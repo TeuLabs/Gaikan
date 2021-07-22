@@ -1,0 +1,13 @@
+{
+    "name": "matteu/php-frontend",
+    "description": "Experimental frontend framework written in PHP",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matteu",
+            "email": "matteugt@gmail.com"
+        }
+    ],
+    "require": {}
+}
