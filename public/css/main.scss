@@ -1,0 +1,29 @@
+@use '../../node_modules/@growstocks/stack/Core/Theme';
+@use '../../node_modules/@growstocks/stack/Components/SCButton';
+
+$primary: #232323;
+$secondary: #103b21;
+
+$breakpoints: (
+    'small': 320px,
+    'medium': 540px,
+    'large': 870px,
+);
+
+:root {
+    @include Theme.config(
+        $primary,
+        $secondary,
+        $breakpoints
+    );
+}
+
+@include SCButton.render(
+    $shape-theme: (
+        'shape': pill
+    ),
+    $type: (
+        'outlined',
+        'filled'
+    )
+);

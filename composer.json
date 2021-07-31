@@ -1,5 +1,5 @@
 {
-    "name": "matteu/php-frontend",
+    "name": "matteu/gaikan",
     "description": "Experimental frontend framework written in PHP",
     "type": "library",
     "license": "MIT",
@@ -9,5 +9,13 @@
             "email": "matteugt@gmail.com"
         }
     ],
-    "require": {}
+    "autoload": {
+        "psr-4":  {
+            "app\\": "./"
+        }
+    },
+    "require": {
+        "ext-mysqli": "*",
+        "php": "^8.0"
+    }
 }
