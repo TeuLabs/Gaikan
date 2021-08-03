@@ -20,11 +20,4 @@ class Component {
         return true;
     }
 
-    protected static function structure($structure)
-    {
-        
-        return $structure;
-
-    }
-
 }
