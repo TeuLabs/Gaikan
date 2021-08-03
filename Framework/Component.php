@@ -5,10 +5,12 @@ namespace Gaikan;
 class Component {
 
     public array $props = [];
+    public array $states = [];
 
-    public function __construct(array $props)
+    public function __construct(array $props = [], array $states = [])
     {
         $this->props = $props;
+        $this->states = $states;
     }
 
     protected function has_prop($query): bool

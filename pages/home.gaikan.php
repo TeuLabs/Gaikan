@@ -2,4 +2,4 @@
 
 use app\components\Home;
 
-(new Home([]))->render();
+(new Home)->render();
