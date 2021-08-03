@@ -10,7 +10,7 @@ class Home extends Component
 
     public function render(): void
     {
-        (new SCButton(['label' => 'INCREMENT']))->render();
+        (new SCButton(['label' => 'Label Property']))->render();
     }
 
 }
