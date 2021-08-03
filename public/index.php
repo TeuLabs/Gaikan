@@ -6,10 +6,6 @@ use Gaikan\Application;
 
 $app = new Application(dirname(__DIR__));
 
-$app->route->get('/', 'home');
-
-$app->route->get('/users', function() {
-    return 'Hello There User!';
-});
+$app->route->get('/', 'index');
 
 $app->run();
