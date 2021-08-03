@@ -14,7 +14,7 @@ class Home extends Component
         $apps = json_decode(file_get_contents($url));
 
         foreach ($apps as $app) {
-            (new SCButton(['label' => $app->app_name]))->render();
+            (new SCButton(['label' => $app->app_name, 'link' => 'https://www.youtube.com/watch?v=kGR09qCO0CM']))->render();
         }
     }
 
