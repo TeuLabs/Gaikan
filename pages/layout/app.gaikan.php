@@ -6,12 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HOME</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
 
 </head>
 <body>
+<h2>LAYOUT</h2>
 
-    {{ $content }}
+    @inject('content')
 
 </body>
 </html>

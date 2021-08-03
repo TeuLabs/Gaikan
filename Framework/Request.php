@@ -1,11 +1,12 @@
 <?php
 
-namespace app\Framework;
+namespace Gaikan;
 
 class Request
 {
 
-    public function getPath() {
+    public function getPath()
+    {
 
         $path = $_SERVER['REQUEST_URI'] ?? '/';
         $position = strpos($path, '?');
@@ -18,7 +19,8 @@ class Request
 
     }
 
-    public function getMethod() {
+    public function getMethod(): string
+    {
 
         return strtolower($_SERVER['REQUEST_METHOD']);
 

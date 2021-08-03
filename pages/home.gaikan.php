@@ -1,1 +1,5 @@
-<h1>WELCOME HOME!</h1>
+<?php
+
+use app\components\Home;
+
+(new Home([]))->render();

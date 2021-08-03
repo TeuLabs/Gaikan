@@ -1,14 +1,15 @@
 <?php
 
-namespace app\Framework;
+namespace Gaikan;
 
-class Gaikan {
+class Application {
 
     public Route $route;
     public Request $request;
     public static string $ROOT_DIR;
 
-    public function __construct($rootPath) {
+    public function __construct($rootPath)
+    {
 
         self::$ROOT_DIR = $rootPath;
         $this->request = new Request;
@@ -16,7 +17,8 @@ class Gaikan {
 
     }
 
-    public function run() {
+    public function run()
+    {
 
         echo $this->route->resolve();
 

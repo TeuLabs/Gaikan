@@ -11,11 +11,13 @@
     ],
     "autoload": {
         "psr-4":  {
-            "app\\": "./"
+            "app\\": "./",
+            "Gaikan\\": "./Framework"
         }
     },
     "require": {
         "ext-mysqli": "*",
-        "php": "^8.0"
+        "php": "^8.0",
+        "ext-curl": "*"
     }
 }

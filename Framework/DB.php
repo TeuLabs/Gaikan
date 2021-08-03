@@ -1,7 +1,7 @@
 <?php
 
 
-namespace app\Framework;
+namespace Gaikan;
 
 
 class DB {

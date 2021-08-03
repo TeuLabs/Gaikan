@@ -1,6 +1,6 @@
 <?php
 
-namespace app\Framework;
+namespace Gaikan;
 
 class View
 {
@@ -10,7 +10,14 @@ class View
         $raw_layout = $this->layout();
         $raw_view = $this->view($view);
 
-        return str_replace('{{ $content }}', $raw_view, $raw_layout);
+        return str_replace("@inject('content')", $raw_view, $raw_layout);
+
+    }
+
+    public function findTemplate($page) {
+
+        $open = strpos("@template()", "(");
+        $close = strpos("@template()", ")");
 
     }
 
@@ -18,7 +25,7 @@ class View
     {
 
         ob_start();
-        include_once Gaikan::$ROOT_DIR.'/pages/layout/app.gaikan.php';
+        include_once Application::$ROOT_DIR.'/pages/layout/app.gaikan.php';
         return ob_get_clean();
 
     }
@@ -27,7 +34,7 @@ class View
     {
 
         ob_start();
-        include_once Gaikan::$ROOT_DIR.'/pages/'.$view.'.gaikan.php';;
+        include_once Application::$ROOT_DIR.'/pages/'.$view.'.gaikan.php';;
         return ob_get_clean();
 
     }

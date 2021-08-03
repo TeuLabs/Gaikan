@@ -1,10 +1,27 @@
 <?php
 
-namespace app\Framework;
+namespace Gaikan;
 
 class Component {
 
-    protected static function structure($structure) {
+    public array $props = [];
+
+    public function __construct(array $props)
+    {
+        $this->props = $props;
+    }
+
+    protected function has_prop($query): bool
+    {
+        if (!array_key_exists($query, $this->props)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    protected static function structure($structure)
+    {
         
         return $structure;
 

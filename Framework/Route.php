@@ -1,7 +1,7 @@
 <?php
 
-namespace app\Framework;
-use app\Framework\View;
+namespace Gaikan;
+use Gaikan\View;
 
 class Route extends View
 {
@@ -9,19 +9,22 @@ class Route extends View
     protected array $routes = [];
     public Request $request;
 
-    public function __construct(Request $request) {
+    public function __construct(Request $request)
+    {
 
         $this->request = $request;
 
     }
 
-    public function get($route, $response) {
+    public function get($route, $response)
+    {
 
         $this->routes['get'][$route] = $response;
 
     }
 
-    public function resolve() {
+    public function resolve()
+    {
 
         $path = $this->request->getPath();
         $method = $this->request->getMethod();
