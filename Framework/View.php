@@ -25,7 +25,7 @@ class View
     {
 
         ob_start();
-        include_once Application::$ROOT_DIR.'/pages/layout/app.gaikan.php';
+        include_once Application::$ROOT_DIR.'/src/pages/layout/app.gaikan.php';
         return ob_get_clean();
 
     }
@@ -34,7 +34,7 @@ class View
     {
 
         ob_start();
-        include_once Application::$ROOT_DIR.'/pages/'.$view.'.gaikan.php';;
+        include_once Application::$ROOT_DIR.'/src/pages/'.$view.'.gaikan.php';;
         return ob_get_clean();
 
     }
