@@ -10,7 +10,7 @@ class SCButton extends Element
     public static function render($icon, $label): string
     {
         return ('
-            <button class="sc-button">
+            <button class="sc-button #$icon#">
                 <i class="sc-button__icon material-icons">' . $icon . '</i>
                 <span class="sc-button__label">' . $label . '</span>
             </button>
