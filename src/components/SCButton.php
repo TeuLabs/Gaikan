@@ -1,6 +1,6 @@
 <?php
 
-namespace app\src\components;
+namespace App\src\components;
 
 class SCButton
 {

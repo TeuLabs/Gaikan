@@ -1,17 +1,17 @@
 <?php
 
-namespace app\src\components;
+namespace App\src\components;
 
 use Gaikan\Element;
 
-class App extends Element
+class App
 {
-    /*public function render(): string
+    public static function render(): string
     {
         return ('
             <main class=`"content-wrap">
-                <SCButton icon="favorite" label="BUTTON" />
+                <SCButton icon="favorite" label="Button" />
             </main>
         ');
-    }*/
+    }
 }
