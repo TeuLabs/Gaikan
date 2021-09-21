@@ -10,20 +10,6 @@ use SimpleXMLElement;
 class Element
 {
 
-    protected static array $propCache = [];
-
-    public string $elementName;
-
-    protected string $template =
-        <<<'EOF'
-        <{{ elementName }} {{ attributes }} {{ passableAttributes }}>
-            {{ slots }}
-            {{ defaultSlot }}
-        </{{ elementName }}>
-        EOF;
-
-    protected string $passablePropTemplate = "#{{ prop }}#";
-
     public static function render(string $component)
     {
         return self::parse($component);
