@@ -5,6 +5,7 @@ namespace Gaikan;
 use DOMDocument;
 use DOMElement;
 use Exception;
+use SimpleXMLElement;
 
 class Element
 {
@@ -12,8 +13,6 @@ class Element
     protected static array $propCache = [];
 
     public string $elementName;
-
-    public ElementAttribute $attributes;
 
     protected string $template =
         <<<'EOF'
@@ -25,44 +24,33 @@ class Element
 
     protected string $passablePropTemplate = "#{{ prop }}#";
 
-    public static function parse(string $component)
+    public static function render(string $component)
     {
-
-        $component = trim($component);
-
-        $elementKey = '<';
-        $elementStart = strpos($component, $elementKey);
-        $elementEnd = strpos($component, " ");
-
-        $element = trim(substr($component, ($elementStart + 1), $elementEnd));
-        $elementDom = new DOMElement($element);
-        $elementTag = $elementDom->nodeName;
-
-        $attributes = self::getAttrWithValue($elementTag, $component);
-
-        echo "<pre>";
-        echo print_r([$elementTag, [$attributes]]);
-        echo "</pre>";
+        return self::parse($component);
     }
 
-
-    private static function getAttrWithValue(string $componentName, $component): array
+    /**
+     * @throws Exception
+     */
+    private static function parse(string $component)
     {
-        $attributes = [];
 
-        $dom = new DOMDocument();
-        $dom->loadHTML($component);
-        $element = $dom->getElementsByTagName($componentName)->item(0);
+        $element = new SimpleXMLElement($component);
+        $tagName = $element->getName();
+        $attributes = $element->attributes();
 
-        if ($element->hasAttributes()) {
-            foreach ($element->attributes as $attribute) {
-                $attribute = $attribute->nodeName;
-                $value = $attribute->nodeValue;
-                array_push($attributes, [$attribute => $value]);
-            }
+        $attributeBag = [];
+
+        echo $tagName . '<br/>';
+
+        foreach ($attributes as $a => $v) {
+            array_push($attributeBag, [$a => $v]);
         }
 
-        return $attributes;
+        echo print_r(json_encode($attributeBag));
+
+        // return call_user_func(__NAMESPACE__ . '\\' . $tagName . '::render', $attributeBag);
+
     }
 
 }
