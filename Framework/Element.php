@@ -35,7 +35,7 @@ class Element
 
         echo print_r(json_encode($attributeBag));
 
-        // return call_user_func(__NAMESPACE__ . '\\' . $tagName . '::render', $attributeBag);
+        return call_user_func($tagName . '::render');
 
     }
 
