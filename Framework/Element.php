@@ -2,8 +2,6 @@
 
 namespace Gaikan;
 
-use DOMDocument;
-use DOMElement;
 use Exception;
 use SimpleXMLElement;
 
@@ -35,7 +33,7 @@ class Element
 
         echo print_r(json_encode($attributeBag));
 
-        return call_user_func($tagName . '::render');
+        return call_user_func("app\src\components\\$tagName" . '::render');
 
     }
 
