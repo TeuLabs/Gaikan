@@ -27,6 +27,7 @@ $myLabel = 'My Label';
 
 echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" type="outlined" />');
 
+// Meant to not render and throw an error
 echo '<br>';
 echo '<pre>';
 echo Element::render('

@@ -54,7 +54,7 @@ class Element
     private static function parse(string $component): array|Element
     {
         $element = new SimpleXMLElement($component);
-        $childRef = new SimpleXMLIterator($component);
+        // $childRef = new SimpleXMLIterator($component);
 
         $tagName = $element->getName();
         $attributes = $element->attributes();
