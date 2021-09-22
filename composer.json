@@ -1,6 +1,6 @@
 {
     "name": "gaikan/gaikan",
-    "description": "Experimental frontend framework written in PHP",
+    "description": "An experimental library for building user interfaces in PHP",
     "type": "library",
     "license": "MIT",
     "authors": [
