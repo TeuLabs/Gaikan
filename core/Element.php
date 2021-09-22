@@ -12,7 +12,7 @@ class Element
     public array $attributes;
     public array|object $children;
 
-    private static string $componentFolder = '\App\src\components\\';
+    public static string $componentFolder = '\App\src\components\\';
 
     /**
      * @param $tagName
@@ -29,14 +29,15 @@ class Element
     /**
      * Renders final component
      *
-     * @param string $component
+     * @param string $parentComponent
      * @return mixed
      * @throws Exception
      */
-    public static function render(string $component): mixed
+    public static function render(string $parentComponent): mixed
     {
-        $parsedComponent = self::parse($component);
+        $parsedComponent = self::parse($parentComponent);
         $class = self::$componentFolder . $parsedComponent->tagName;
+        // return var_dump($parsedComponent);
         if (!class_exists($class)) {
             throw new \Error("The class $class does not exist or is not in the right folder. Please create a component with that class.");
         } else {
@@ -54,22 +55,23 @@ class Element
     private static function parse(string $component): array|Element
     {
         $element = new SimpleXMLElement($component);
-        // $childRef = new SimpleXMLIterator($component);
-
         $tagName = $element->getName();
         $attributes = $element->attributes();
         $children = [];
 
-        $handledAttr = self::handleProps($attributes);
+        if (!preg_match('~^\p{Lu}~u', $tagName)) {
+            throw new \Error("The component name $tagName is expected to be starting with a capital letter.");
+        } else {
+            $handledAttr = self::handleProps($attributes);
 
-        $attrDump = [];
+            $attrDump = [];
 
-        for ($i = 0; $i <= (count($handledAttr) - 1); $i++) {
-            // ['propName'] => "propValue"
-            $attrDump[$handledAttr[$i][0]] = $handledAttr[$i][1];
+            for ($i = 0; $i <= (count($handledAttr) - 1); $i++) {
+                $attrDump[$handledAttr[$i][0]] = $handledAttr[$i][1];
+            }
+
+            return new Element($tagName, $attrDump, $children);
         }
-
-        return new Element($tagName, $attrDump, $children);
     }
 
     /**

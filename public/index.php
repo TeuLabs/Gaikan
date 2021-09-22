@@ -25,15 +25,10 @@ use Gaikan\Element;
 $myIcon = 'favorite';
 $myLabel = 'My Label';
 
-echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" type="outlined" />');
-
-// Meant to not render and throw an error
-echo '<br>';
-echo '<pre>';
-echo Element::render('
-    <SCCard title="My Title" subtitle="Subtitle" />
-');
-echo '</pre>';
+// Dynamic rendering
+echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" type="outlined">My button</SCButton>');
+// Static rendering
+echo Element::render('<SCCard title="My Title" subtitle="Subtitle" />');
 ?>
 
 </body>
