@@ -18,15 +18,24 @@ require_once __DIR__ . './../vendor/autoload.php';
 </head>
 <body>
 
+<style>
+    a {
+        text-decoration: none !important;
+    }
+</style>
+
 <?php
 
 use Gaikan\Element;
 
+$rawUrl = 'https://randomuser.me/api/';
+$data = json_decode(file_get_contents($rawUrl));
+
 $myIcon = 'favorite';
-$myLabel = 'My Label';
+$myLabel = $data->results[0]->name->last;
 
 // Dynamic rendering
-echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" type="outlined">My button</SCButton>');
+echo Element::render('<SCButton icon="fastfood" label="' . $myLabel . '" type="outlined" link="./" />');
 // Static rendering
 echo Element::render('<SCCard title="My Title" subtitle="Subtitle" />');
 ?>
