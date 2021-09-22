@@ -29,13 +29,13 @@ class Element
     /**
      * Renders final component
      *
-     * @param string $parentComponent
+     * @param string $component
      * @return mixed
      * @throws Exception
      */
-    public static function render(string $parentComponent): mixed
+    public static function render(string $component): mixed
     {
-        $parsedComponent = self::parse($parentComponent);
+        $parsedComponent = self::parse($component);
         $class = self::$componentFolder . $parsedComponent->tagName;
         // return var_dump($parsedComponent);
         if (!class_exists($class)) {

@@ -35,9 +35,9 @@ $myIcon = 'favorite';
 $myLabel = $data->results[0]->name->last;
 
 // Dynamic rendering
-echo Element::render('<SCButton icon="fastfood" label="' . $myLabel . '" type="outlined" link="./" />');
+echo Element::render("<SCButton icon=\"fastfood\" label=\"$myLabel\" type=\"outlined\" link=\"./\" />");
 // Static rendering
-echo Element::render('<SCCard title="My Title" subtitle="Subtitle" />');
+echo Element::render('<SCCard title="My Title" subtitle="Hello World! This is a partially reactive component made in PHP" />');
 ?>
 
 </body>
