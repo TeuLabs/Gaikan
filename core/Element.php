@@ -4,7 +4,7 @@ namespace Gaikan;
 
 use Exception;
 use SimpleXMLElement;
-use SimpleXMLIterator;
+use DOMElement;
 
 class Element
 {
@@ -13,6 +13,7 @@ class Element
     public array|object $children;
 
     public static string $componentFolder = '\App\src\components\\';
+    public static string $pageFolder = '\App\src\page\\';
 
     /**
      * @param $tagName
@@ -35,7 +36,7 @@ class Element
      */
     public static function render(string $component): mixed
     {
-        $parsedComponent = self::parse($component);
+        $parsedComponent = self::handleElement($component);
         $class = self::$componentFolder . $parsedComponent->tagName;
         // return var_dump($parsedComponent);
         if (!class_exists($class)) {
@@ -52,7 +53,7 @@ class Element
      * @return array|Element
      * @throws Exception
      */
-    private static function parse(string $component): array|Element
+    private static function handleElement(string $component): array|Element
     {
         $element = new SimpleXMLElement($component);
         $tagName = $element->getName();
@@ -80,7 +81,7 @@ class Element
      * @param array|object $attributes
      * @return array
      */
-    protected static function handleProps(array|object $attributes): array
+    private static function handleProps(array|object $attributes): array
     {
         $attributeBag = [];
 
@@ -89,6 +90,18 @@ class Element
         }
 
         return $attributeBag;
+    }
+
+    /**
+     * Verifies if the element is a valid HTML element or a custom component, if it is a custom component it will output true, otherwise output false.
+     *
+     * @param array|object $componentData
+     * @return bool
+     */
+    private static function isCustomComponent(array|object $componentData): bool
+    {
+        $tagName = $componentData->tagName;
+        return false;
     }
 
 }

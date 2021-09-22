@@ -2,11 +2,11 @@
   --sc-theme--primary-light: #565656;
   --sc-theme--primary: #232323;
   --sc-theme--primary-dark: #030303;
-  --sc-theme--secondary-light: #407153;
-  --sc-theme--secondary: #103b21;
-  --sc-theme--secondary-dark: #020905;
+  --sc-theme--secondary-light: #95c7a8;
+  --sc-theme--secondary: #30c669;
+  --sc-theme--secondary-dark: #24934e;
   --sc-theme--on-primary: #fff;
-  --sc-theme--on-secondary: #fff;
+  --sc-theme--on-secondary: #000;
   --sc-theme--error: #b00020;
   --sc-theme--warning: #ffa000;
   --sc-theme--success: #25a53f;

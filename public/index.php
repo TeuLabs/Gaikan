@@ -14,18 +14,19 @@ require_once __DIR__ . './../vendor/autoload.php';
     <link href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
           rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
-
 </head>
 <body>
 
 <style>
+    body {
+        background-color: #181818;
+    }
     a {
         text-decoration: none !important;
     }
 </style>
 
 <?php
-
 use Gaikan\Element;
 
 $rawUrl = 'https://randomuser.me/api/';
@@ -34,10 +35,14 @@ $data = json_decode(file_get_contents($rawUrl));
 $myIcon = 'favorite';
 $myLabel = $data->results[0]->name->last;
 
+// Element::$componentFolder = 'App\src\pages\\';
+
 // Dynamic rendering
-echo Element::render("<SCButton icon=\"fastfood\" label=\"$myLabel\" type=\"outlined\" link=\"./\" />");
+echo Element::render("<SCButton icon=\"fastfood\" label=\"$myLabel\" type=\"outlined\" />");
 // Static rendering
-echo Element::render('<SCCard title="My Title" subtitle="Hello World! This is a partially reactive component made in PHP" />');
+echo Element::render('<SCCard title="My Title" subtitle="Hello World! Inaantok na ako gusto ko na matulog!" />');
+
+echo Element::render('<Typography type="body" content="Hello everyone! Welcome to my blog!" />');
 ?>
 
 </body>
