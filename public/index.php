@@ -24,10 +24,14 @@ use Gaikan\Element;
 
 $myIcon = 'favorite';
 $myLabel = 'My Label';
-echo '<pre>';
-echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" />');
+
+echo Element::render('<SCButton icon="' . $myIcon . '" label="' . $myLabel . '" type="outlined" />');
+
 echo '<br>';
-echo Element::render('<SCCard title="My Title" subtitle="Subtitle" />');
+echo '<pre>';
+echo Element::render('
+    <SCCard title="My Title" subtitle="Subtitle" />
+');
 echo '</pre>';
 ?>
 

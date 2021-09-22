@@ -4,26 +4,21 @@
 $primary: #232323;
 $secondary: #103b21;
 
-$breakpoints: (
-    'small': 320px,
-    'medium': 540px,
-    'large': 870px,
-);
-
 :root {
     @include Theme.config(
-        $primary,
-        $secondary,
-        $breakpoints
+        #232323,
+        #103b21,
     );
 }
 
 @include SCButton.render(
     $shape-theme: (
-        'shape': pill
+        'shape': rounded
     ),
-    $type: (
-        'outlined',
-        'filled'
+    $settings: (
+        type: (
+            'outlined',
+            'filled'
+        )
     )
 );

@@ -4,51 +4,77 @@ namespace Gaikan;
 
 use Exception;
 use SimpleXMLElement;
+use SimpleXMLIterator;
 
 class Element
 {
-    private static string $componentFolder = '\app\src\components\\';
+    public string $tagName;
+    public array $attributes;
+    public array|object $children;
+
+    private static string $componentFolder = '\App\src\components\\';
+
+    /**
+     * @param $tagName
+     * @param $attributes
+     * @param $children
+     */
+    public function __construct($tagName, $attributes, $children)
+    {
+        $this->tagName = $tagName;
+        $this->attributes = $attributes;
+        $this->children = $children;
+    }
 
     /**
      * Renders final component
+     *
      * @param string $component
-     * @throws Exception
      * @return mixed
+     * @throws Exception
      */
     public static function render(string $component): mixed
     {
-        $parsed = self::parse($component);
-        $file = '../src/components/' . $parsed[0] . '.php';
-        // return var_dump(self::parse($component));
-        return $file;
+        $parsedComponent = self::parse($component);
+        $class = self::$componentFolder . $parsedComponent->tagName;
+        if (!class_exists($class)) {
+            throw new \Error("The class $class does not exist or is not in the right folder. Please create a component with that class.");
+        } else {
+            return call_user_func_array([$class, 'render'], $parsedComponent->attributes);
+        }
     }
 
     /**
      * Parses component for its information and puts it in an array.
+     *
      * @param string $component
+     * @return array|Element
      * @throws Exception
-     * @return array
      */
-    private static function parse(string $component): array
+    private static function parse(string $component): array|Element
     {
         $element = new SimpleXMLElement($component);
+        $childRef = new SimpleXMLIterator($component);
+
         $tagName = $element->getName();
         $attributes = $element->attributes();
+        $children = [];
 
         $handledAttr = self::handleProps($attributes);
 
-        $dump = [];
+        $attrDump = [];
 
         for ($i = 0; $i <= (count($handledAttr) - 1); $i++) {
-            $dump[$i] = $handledAttr[$i][0] . ' = ' . $handledAttr[$i][1];
+            // ['propName'] => "propValue"
+            $attrDump[$handledAttr[$i][0]] = $handledAttr[$i][1];
         }
 
-        return [$tagName, $dump];
+        return new Element($tagName, $attrDump, $children);
     }
 
     /**
-     * Handles all the props in a component. This function is responsible for
-     * sanitizing the raw SimpleXMLElement object data.
+     * Handles all the props in a component. This function is responsible for sanitizing the raw SimpleXMLElement object data.
+     *
      * @param array|object $attributes
      * @return array
      */

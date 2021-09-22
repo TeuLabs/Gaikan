@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@growstocks/stack": "^2.0.1"
+    "@growstocks/stack": "^2.1.6"
   }
 }
