@@ -18,6 +18,14 @@
   --sc-theme--large-radius: 0.7rem;
 }
 
+* {
+  color: inherit;
+}
+
+body {
+  color: #fff;
+}
+
 .sc-button {
   width: max-content;
   min-width: 57px;

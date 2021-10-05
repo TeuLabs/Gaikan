@@ -2,13 +2,21 @@
 @use '../../node_modules/@growstocks/stack/Components/SCButton';
 
 $primary: #232323;
-$secondary: #30c669,#103b21;
+$secondary: #30c669, #103b21;
 
 :root {
     @include Theme.config(
         #232323,
         #30c669,
     );
+}
+
+* {
+    color: inherit;
+}
+
+body {
+    color: #fff;
 }
 
 @include SCButton.render(

@@ -29,16 +29,10 @@ require_once __DIR__ . './../vendor/autoload.php';
 <?php
 use Gaikan\Element;
 
-$rawUrl = 'https://randomuser.me/api/';
-$data = json_decode(file_get_contents($rawUrl));
-
-$myIcon = 'favorite';
-$myLabel = $data->results[0]->name->last;
-
 // Element::$componentFolder = 'App\src\pages\\';
 
 // Dynamic rendering
-echo Element::render("<SCButton icon=\"fastfood\" label=\"$myLabel\" type=\"outlined\" />");
+echo Element::render("<SCButton icon=\"fastfood\" type=\"outlined\" link=\"./\" />");
 // Static rendering
 echo Element::render('<SCCard title="My Title" subtitle="Hello World! Inaantok na ako gusto ko na matulog!" />');
 

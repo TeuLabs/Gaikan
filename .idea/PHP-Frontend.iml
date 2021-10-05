@@ -7,6 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/." isTestSource="false" packagePrefix="App\" />
       <sourceFolder url="file://$MODULE_DIR$/./core" isTestSource="false" packagePrefix="Gaikan\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/react/promise" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/react/event-loop" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

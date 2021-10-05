@@ -21,6 +21,8 @@
         "ext-curl": "*",
       "ext-dom": "*",
       "ext-libxml": "*",
-      "ext-simplexml": "*"
+      "ext-simplexml": "*",
+        "react/event-loop": "^1.2",
+        "react/promise": "^2.8"
     }
 }

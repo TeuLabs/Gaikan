@@ -36,13 +36,17 @@ class Element
      */
     public static function render(string $component): mixed
     {
-        $parsedComponent = self::handleElement($component);
-        $class = self::$componentFolder . $parsedComponent->tagName;
+        $handledElement = self::handleElement($component);
+        $classOrFunction = self::$componentFolder . $handledElement->tagName;
         // return var_dump($parsedComponent);
-        if (!class_exists($class)) {
-            throw new \Error("The class $class does not exist or is not in the right folder. Please create a component with that class.");
+        if (!class_exists($classOrFunction)) {
+            if (!function_exists($classOrFunction)) {
+                throw new \Error("The class/function $classOrFunction does not exist or is not in the right folder. Please create a component with that class/function.");
+            } else {
+                return call_user_func_array($classOrFunction, $handledElement->attributes);
+            }
         } else {
-            return call_user_func_array([$class, 'render'], $parsedComponent->attributes);
+            return call_user_func_array([$classOrFunction, 'render'], $handledElement->attributes);
         }
     }
 

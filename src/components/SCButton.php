@@ -2,26 +2,30 @@
 
 namespace App\src\components;
 
-class SCButton
+use Gaikan\Data;
+
+function SCButton($icon, $type = 'outlined', $link = null): string
 {
-    public static function render($icon, $label, $type = 'outlined', $link = null): string
-    {
-        if (!$link) {
-            return ('
+    $url = 'https://randomuser.me/api/';
+    $data = Data::get($url);
+
+    $label = $data->results[0]->name->last;
+
+    if (!$link) {
+        return ('
                 <button class="sc-button sc-button--' . $type . '">
                     <i class="sc-button__icon material-icons">' . $icon . '</i>
                     <span class="sc-button__label">' . $label . '</span>
                 </button>
             ');
-        } else {
-            return ('
-                <a href="'. $link .'">
-                    <button class="sc-button sc-button--'. $type .'">
+    } else {
+        return ('
+                <a href="' . $link . '">
+                    <button class="sc-button sc-button--' . $type . '">
                         <i class="sc-button__icon material-icons">' . $icon . '</i>
                         <span class="sc-button__label">' . $label . '</span>
                     </button>
                 </a>
             ');
-        }
     }
 }
