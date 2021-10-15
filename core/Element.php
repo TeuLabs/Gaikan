@@ -8,24 +8,19 @@ use DOMElement;
 
 class Element
 {
-    public string $tagName;
-    public array $attributes;
-    public array|object $children;
-
     public static string $componentFolder = '\App\src\components\\';
     public static string $pageFolder = '\App\src\page\\';
 
     /**
-     * @param $tagName
-     * @param $attributes
-     * @param $children
+     * @param string $tagName
+     * @param array $attributes
+     * @param array|object|string|null $children
      */
-    public function __construct($tagName, $attributes, $children)
-    {
-        $this->tagName = $tagName;
-        $this->attributes = $attributes;
-        $this->children = $children;
-    }
+    public function __construct(
+        public string $tagName,
+        public array $attributes,
+        public array|object|string|null $children
+    ){}
 
     /**
      * Renders final component
@@ -38,8 +33,8 @@ class Element
     {
         $handledElement = self::handleElement($component);
         $classOrFunction = self::$componentFolder . $handledElement->tagName;
-        // return var_dump($parsedComponent);
-        if (!class_exists($classOrFunction)) {
+        return var_dump($handledElement);
+        /*if (!class_exists($classOrFunction)) {
             if (!function_exists($classOrFunction)) {
                 throw new \Error("The class/function $classOrFunction does not exist or is not in the right folder. Please create a component with that class/function.");
             } else {
@@ -47,7 +42,7 @@ class Element
             }
         } else {
             return call_user_func_array([$classOrFunction, 'render'], $handledElement->attributes);
-        }
+        }*/
     }
 
     /**
@@ -61,22 +56,19 @@ class Element
     {
         $element = new SimpleXMLElement($component);
         $tagName = $element->getName();
-        $attributes = $element->attributes();
-        $children = [];
+        $attr = $element->attributes();
+        $ch = $element->children();
 
-        if (!preg_match('~^\p{Lu}~u', $tagName)) {
-            throw new \Error("The component name $tagName is expected to be starting with a capital letter.");
-        } else {
-            $handledAttr = self::handleProps($attributes);
+        $handledAttr = self::handleProps($attr);
 
-            $attrDump = [];
+        $attributes = [];
+        $children = self::handleChildren($ch);
 
-            for ($i = 0; $i <= (count($handledAttr) - 1); $i++) {
-                $attrDump[$handledAttr[$i][0]] = $handledAttr[$i][1];
-            }
-
-            return new Element($tagName, $attrDump, $children);
+        for ($i = 0; $i <= (count($handledAttr) - 1); $i++) {
+            $attributes[$handledAttr[$i][0]] = $handledAttr[$i][1];
         }
+
+        return new Element($tagName, $attributes, $children);
     }
 
     /**
@@ -94,6 +86,21 @@ class Element
         }
 
         return $attributeBag;
+    }
+
+    private static function handleChildren(array|object $children): array
+    {
+        $childrenBag = [];
+
+        if (is_string($children)) return [$children];
+
+        foreach ($children as $childTagName => $childObject) {
+            $childAttr = self::handleProps($childObject->attributes());
+            $childChild = (array)$childObject;
+            array_push($childrenBag, new Element($childTagName, $childAttr, $childChild[0]));
+        }
+
+        return $childrenBag;
     }
 
     /**

@@ -1,28 +1,27 @@
 {
-    "name": "gaikan/gaikan",
-    "description": "An experimental library for building user interfaces in PHP",
-    "type": "library",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Matteu",
-            "email": "matteugt@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4":  {
-            "App\\": "./",
-            "Gaikan\\": "./core"
-        }
-    },
-    "require": {
-        "ext-mysqli": "*",
-        "php": "^8.0",
-        "ext-curl": "*",
-      "ext-dom": "*",
-      "ext-libxml": "*",
-      "ext-simplexml": "*",
-        "react/event-loop": "^1.2",
-        "react/promise": "^2.8"
+  "name": "gaikan/gaikan",
+  "description": "An experimental library for building user interfaces in PHP",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Matteu",
+      "email": "matteugt@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "./",
+      "Gaikan\\": "./core"
+    }
+  },
+  "require": {
+    "ext-mysqli": "*",
+    "php": "^8.0",
+    "ext-curl": "*",
+    "ext-dom": "*",
+    "ext-libxml": "*",
+    "ext-simplexml": "*",
+    "spatie/async": "^1.5"
+  }
 }

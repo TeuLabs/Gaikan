@@ -7,8 +7,7 @@ use Gaikan\Data;
 function SCButton($icon, $type = 'outlined', $link = null): string
 {
     $url = 'https://randomuser.me/api/';
-    $data = Data::get($url);
-
+    $data = Data::sanitize(Data::get($url));
     $label = $data->results[0]->name->last;
 
     if (!$link) {

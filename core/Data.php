@@ -2,12 +2,14 @@
 
 namespace Gaikan;
 
-use React\EventLoop;
-use React\Promise;
-
 class Data
 {
-    public static function get(string $url) {
-        return json_decode(file_get_contents($url));
+    public static function get(string $url): bool|string
+    {
+        return file_get_contents($url);
+    }
+
+    public static function sanitize(mixed $data) {
+        return json_decode($data);
     }
 }

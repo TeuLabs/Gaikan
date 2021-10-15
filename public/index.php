@@ -26,18 +26,32 @@ require_once __DIR__ . './../vendor/autoload.php';
     }
 </style>
 
-<?php
-use Gaikan\Element;
+<pre>
+    <?php
+    use Gaikan\Element;
+    use Gaikan\DumpElement;
 
-// Element::$componentFolder = 'App\src\pages\\';
+    // Element::$componentFolder = 'App\src\pages\\';
+    // Dynamic rendering
+    // echo Element::render("<SCButton icon=\"fastfood\" type=\"outlined\" link=\"./\" />");
+    // Static rendering
+    // echo Element::render('<SCCard title="My Title" subtitle="Hello World! Inaantok na ako gusto ko na matulog!" />');
+    // echo Element::render('<Typography type="body" content="Hello everyone! Welcome to my blog!" />');
 
-// Dynamic rendering
-echo Element::render("<SCButton icon=\"fastfood\" type=\"outlined\" link=\"./\" />");
-// Static rendering
-echo Element::render('<SCCard title="My Title" subtitle="Hello World! Inaantok na ako gusto ko na matulog!" />');
 
-echo Element::render('<Typography type="body" content="Hello everyone! Welcome to my blog!" />');
-?>
+    $component = '
+        <div>
+            <a href="#">
+                
+            </a>
+        </div>
+    ';
+
+    echo Element::render($component);
+
+    ?>
+</pre>
+
 
 </body>
 </html>
